@@ -16,6 +16,7 @@ message(STATUS "Using ${MOD_ID} as ID")
 
 # Copy the mod to the game's mods folder
 set(AUTO_COPY_MOD OFF CACHE BOOL "When ON attempt to copy the mod to the sapiens mod directory. THIS DELETES ALL FILES IN THE TARGET DIRECTORY.")
+set(AUTO_COPY_MOD_HAMMERSTONE OFF CACHE BOOL "When ON attempt to copy the hammerstone mod framework to the sapiens mod directory. THIS DELETES ALL FILES IN THE TARGET DIRECTORY.")
 set(SAPIENS_MOD_DIRECTORY "" CACHE PATH "The directory sapiens loads mods from. THIS DELETES ALL FILES IN THE TARGET DIRECTORY.")
 
 mark_as_advanced(MOD_TYPE) # Should not be changed for c mods as c mods are used for world specific things only.
@@ -82,6 +83,10 @@ endfunction()
 sync_directory_on_build("localizations")
 sync_directory_on_build("models")
 sync_directory_on_build("scripts")
+# support hammerstone
+if (AUTO_COPY_MOD_HAMMERSTONE)
+	sync_directory_on_build("hammerstone")
+endif ()
 
 # Copy the build mod library to the mod folder
 add_custom_command(TARGET ${MOD_ID} POST_BUILD
