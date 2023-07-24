@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1672"
+   inkscape:export-filename="hydration.png"
+   inkscape:export-xdpi="203.3"
+   inkscape:export-ydpi="203.3"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
+   sodipodi:docname="hydration.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1674"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.4923529"
+     inkscape:cx="281.18579"
+     inkscape:cy="551.92017"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2711" />
+  <defs
+     id="defs1669">
+    <rect
+       x="192.82003"
+       y="190.56416"
+       width="422.74193"
+       height="151.65205"
+       id="rect2651" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2413">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop2409" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.48235294;"
+         offset="0.27124384"
+         id="stop2595" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="0.74452722"
+         id="stop2411" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2349">
+      <stop
+         style="stop-color:#38b3ff;stop-opacity:1;"
+         offset="0"
+         id="stop2345" />
+      <stop
+         style="stop-color:#38b3ff;stop-opacity:0;"
+         offset="1"
+         id="stop2347" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2349"
+       id="linearGradient2353"
+       x1="75.086494"
+       y1="158.98909"
+       x2="190.82137"
+       y2="158.98909"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.21531495,0,0,0.21531495,58.919253,201.75588)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2413"
+       id="linearGradient2469"
+       x1="143.28662"
+       y1="194.9821"
+       x2="156.24545"
+       y2="196.35905"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1867489,0,-5.4008483e-8,0.71692056,-307.38247,62.085798)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="path1845"
+       transform="translate(-27.953934,-15.538101)">
+      <g
+         id="g2718"
+         transform="translate(5.6419047e-8,-77.286959)">
+        <g
+           id="g2711"
+           transform="translate(45.407712)">
+          <path
+             style="color:#000000;display:inline;fill:#96e1ff;fill-opacity:1;stroke:url(#linearGradient2353);stroke-width:0.645945;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;-inkscape-stroke:none"
+             d="m 98.767885,243.25145 c 0,7.54101 -6.522531,11.51555 -12.055159,11.41304 -5.379919,-0.0997 -11.563229,-5.22445 -11.303256,-11.52465 0.356536,-8.6403 8.827168,-9.16969 8.87027,-24.37942 8.120364,6.6293 14.488145,16.95002 14.488145,24.49103 z"
+             id="path1849"
+             sodipodi:nodetypes="sascs"
+             inkscape:label="path1849" />
+          <path
+             style="fill:url(#linearGradient2469);fill-opacity:1;stroke:none;stroke-width:2.76719;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+             id="path2407"
+             transform="matrix(-0.94626264,-0.32339915,-0.16095252,0.98696215,0,0)"
+             sodipodi:type="arc"
+             sodipodi:cx="-121.95833"
+             sodipodi:cy="202.8596"
+             sodipodi:rx="15.346753"
+             sodipodi:ry="13.845663"
+             sodipodi:start="1.8241613"
+             sodipodi:end="4.4446009"
+             sodipodi:arc-type="arc"
+             d="m -125.80519,216.26324 a 15.346753,13.845663 0 0 1 -11.49949,-13.30379 15.346753,13.845663 0 0 1 11.28562,-13.45203"
+             sodipodi:open="true" />
+        </g>
+        <text
+           xml:space="preserve"
+           transform="matrix(0.26458333,0,0,0.26458333,51.075995,204.64462)"
+           id="text2649"
+           style="font-size:53.3333px;white-space:pre;shape-inside:url(#rect2651);display:inline;fill:#96e1ff;fill-opacity:1;stroke:none;stroke-width:11.3386;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"><tspan
+             x="192.82031"
+             y="238.44761"
+             id="tspan549"><tspan
+               style="font-family:Laksaman;-inkscape-font-specification:Laksaman"
+               id="tspan547">Hydration</tspan></tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
