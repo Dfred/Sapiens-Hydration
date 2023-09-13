@@ -1,14 +1,18 @@
 #include "SPBiome.h"
+#include <stdio.h>
+
+#define PREFIX "[--- HYDRATION MOD ---] "
 
 // leave the function if a condition isn't met
-#define BAILIF(__expr__, __ret__) if (__expr__) return __ret__;
+#define BAILIF(__expr__, __ret__) if (__expr__) { return __ret__; }
+#define BAILPIF(__expr__, __ret__) if (__expr__) { printf(PREFIX"bailing from "#__expr__"\n"); return __ret__; }
 
 // create a new *water* game object type
 #define GAMEOBJ_WATER_CREATETYPE(__subtype__) static uint32_t gameObjectType_water##__subtype__;
 
 // create a new index for *water* game object type
 #define GAMEOBJ_WATER_GETTYPEINDEX(__subtype__) \
-gameObjectType_water##__subtype__ = threadState->getGameObjectTypeIndex(threadState, "water"#__subtype__);
+gameObjectType_water##__subtype__ = threadState->getGameObjectTypeIndex(threadState, "water"#__subtype__); printf(PREFIX"type index for water"#__subtype__" is %i\n", gameObjectType_water##__subtype__);
 
 // Dave's macro to safely add a type in spBiomeGetTransientGameObjectTypesForFaceSubdivision()
 #define ADD_OBJECT(__addType__)\
@@ -29,11 +33,11 @@ static SPSimpleObjectSpawnerCollection* spawnerCollection;
 
 void spBiomeInit(SPBiomeThreadState* threadState)
 {
-    if(threadState->getGameObjectTypeIndex) //this function isn't set where game object types aren't required eg. in the initial world creation screen
+    if (threadState->getGameObjectTypeIndex) //this function isn't set where game object types aren't required eg. in the initial world creation screen
     {
-        GAMEOBJ_WATER_GETTYPEINDEX(Clear)
-        GAMEOBJ_WATER_GETTYPEINDEX(Tainted)
-        GAMEOBJ_WATER_GETTYPEINDEX(Salted)
+        //~ GAMEOBJ_WATER_GETTYPEINDEX(Clear)
+        //~ GAMEOBJ_WATER_GETTYPEINDEX(Tainted)
+        //~ GAMEOBJ_WATER_GETTYPEINDEX(Salted)
         GAMEOBJ_WATER_GETTYPEINDEX(SpringPop)
         GAMEOBJ_WATER_GETTYPEINDEX(SpringLeak)
         
@@ -41,27 +45,29 @@ void spBiomeInit(SPBiomeThreadState* threadState)
     }
 }
 
-void spBiomeGetTagsForPoint(SPBiomeThreadState* threadState,
-                            uint16_t* tagsOut,
-                            int* tagCountOut,
-                            SPVec3 pointNormal,
-                            SPVec3 noiseLoc,
-                            double altitude,
-                            double steepness,
-                            double riverDistance,
-                            double temperatureSummer,
-                            double temperatureWinter,
-                            double rainfallSummer,
-                            double rainfallWinter)
-{
-    *tagCountOut = 0;
-    *tagsOut = 0;
-}
+//~ void spBiomeGetTagsForPoint(SPBiomeThreadState* threadState,
+                            //~ uint16_t* tagsOut,
+                            //~ int* tagCountOut,
+                            //~ SPVec3 pointNormal,
+                            //~ SPVec3 noiseLoc,
+                            //~ double altitude,
+                            //~ double steepness,
+                            //~ double riverDistance,
+                            //~ double temperatureSummer,
+                            //~ double temperatureWinter,
+                            //~ double rainfallSummer,
+                            //~ double rainfallWinter)
+//~ {
+    //~ *tagCountOut = 0;
+    //~ *tagsOut = 0;
+//~ }
 
 // Converts the steepness value into radians going from 0 to π/2
 double get_AngleFromSteepness(double steepness) {
     return isnan(steepness) ? 0 : atan(steepness / sqrt(32));
 }
+
+static int outs = 0;
 
 // Create Transient Objects
 int spBiomeGetTransientGameObjectTypesForFaceSubdivision(
@@ -70,7 +76,7 @@ int spBiomeGetTransientGameObjectTypesForFaceSubdivision(
     uint32_t*           types,              // Array of types to be generated with size BIOME_MAX_GAME_OBJECT_COUNT_PER_SUBDIVISION
     uint16_t*           biomeTags,          // Array of biome tags at the position to generate
     int                 tagCount,           // Amount of biome tags at the position to generate
-    SPVec3              pointNormal,        // Coordinates in the world
+    SPVec3              pointNormal,        // Coordinates in the world [0-1]
     SPVec3              noiseLoc,           // Location to be used in conjunction with the given noiseGenerator
     uint64_t            faceUniqueID,       // The unique id of the face, can be used to get random values
     int                 level,              // The level of subdivisions the face has undergone. The higher this value, the denser that gameObjects will be placed. Method called only for [13-21] levels.
@@ -79,25 +85,30 @@ int spBiomeGetTransientGameObjectTypesForFaceSubdivision(
     double              riverDistance       // Distance to the closest river. A river distance of 1 indicates that the nearest river is about 7650 hexagons away.
 ){
     int addedCount = incomingTypeCount;
+    //~ // currently make things stupid and scarce for minimum impact on world generation.
+    //~ BAILIF( (outs++ % 500) < 1, addedCount)
 
-    BAILIF(addedCount >= BIOME_MAX_GAME_OBJECT_COUNT_PER_SUBDIVISION, addedCount)
-    BAILIF(baseAltitude <= -0.0000001, addedCount)
-    BAILIF(level < SP_SUBDIVISIONS - 7, addedCount)
+    //~ BAILIF(addedCount >= BIOME_MAX_GAME_OBJECT_COUNT_PER_SUBDIVISION, addedCount)
+    //~ BAILIF(baseAltitude <= -0.0000001, addedCount)
+    //~ BAILIF(level < SP_SUBDIVISIONS - 7, addedCount)
 
-    // no sources too close to a river
-    BAILIF(100 < riverDistance * 7650, addedCount)
+    //~ // no sources too close to a river
+    //~ BAILIF(100 < riverDistance * 7650, addedCount)
 
     // throw dices for number of objects to create
-    SPVec3 noiseLookup = spVec3Mul(noiseLoc, 999.0);
-    SPVec3 scaledNoiseLoc = spVec3Mul(noiseLookup, 400.0);
-    double rawValue = spNoiseGet(threadState->spNoise1, scaledNoiseLoc, 2);
-    double rangedFractionValue = rawValue * rawValue * 8.0;
-    int objectCount = (((int)spRandomIntegerValueForUniqueIDAndSeed(faceUniqueID, 5243, 40)) - 38 + 2 * rangedFractionValue) / 2;
-    BAILIF(objectCount < 0, addedCount)
-
-    // water type from steepness
-    uint32_t water_type = get_AngleFromSteepness(steepness) < 5 ? gameObjectType_waterSpringPop : gameObjectType_waterSpringLeak;
-    ADD_OBJECT(water_type)
+    //~ SPVec3 noiseLookup = spVec3Mul(noiseLoc, 999.0);
+    //~ SPVec3 scaledNoiseLoc = spVec3Mul(noiseLookup, 400.0);
+    //~ double rawValue = spNoiseGet(threadState->spNoise1, scaledNoiseLoc, 2);
+    //~ double rangedFractionValue = rawValue * rawValue * 8.0;
+    //~ int objectCount = (((int)spRandomIntegerValueForUniqueIDAndSeed(faceUniqueID, 5243, 40)) - 38 + 2 * rangedFractionValue) / 2;
+    //~ BAILIF(objectCount < 0, addedCount)
+ 
+    //~ // water type from steepness
+    //~ uint32_t water_type = get_AngleFromSteepness(steepness) < 5 ? gameObjectType_waterSpringPop : gameObjectType_waterSpringLeak;
+    //~ printf(PREFIX "adding object of type %i @(%f,%f, %f) -> addedCount=%i\n", 
+        //~ water_type, pointNormal.x, pointNormal.y, baseAltitude, addedCount);
+    //~ ADD_OBJECT(water_type);
+    //~ outs = 0;
     
     return addedCount;
 }
